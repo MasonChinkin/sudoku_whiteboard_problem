@@ -8,21 +8,19 @@ def valid_board?
 end
 
 def squares
-  squares = Array.new(9) { [] }
+  all_quads = []
 
-  @grid.each_with_index do |row, row_i|
-    row.each_with_index do |col, col_i|
-      if row_i < 3 && col_i < 3
-        squares[0] << col
-      end
-
-      if row_i < 3 && col_i < 6 && col_i > 2
-        squares[1] << col
-      end
-
-      #...
-    end
+  (0..2).each do |i|
+    all_quads << @board[i][0..2] + @board[i][0..2] + @board[i][0..2]
   end
 
-  squares
+  (3..5).each do |i|
+    all_quads << @board[i][3..5] + @board[i][3..5] + @board[i][3..5]
+  end
+
+  (6..8).each do |i|
+    all_quads << @board[i][6..8] + @board[i][6..8] + @board[i][6..8]
+  end
+
+  all_quads
 end
